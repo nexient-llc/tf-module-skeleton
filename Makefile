@@ -11,6 +11,7 @@ JOB_EMAIL ?= job@job.job
 COMPONENTS_DIR = components
 -include $(COMPONENTS_DIR)/Makefile
 
+ifeq ($(IS_PIPELINE),true)
 .PHONY: git-config
 git-config:
 	$(call config,Bearer $(GIT_TOKEN))
@@ -25,7 +26,6 @@ define config
 	git config --global color.ui false
 endef
 
-ifneq ($(IS_PIPELINE),true)
 configure: git-config
 endif
 
