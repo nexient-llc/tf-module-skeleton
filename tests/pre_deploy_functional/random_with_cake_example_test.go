@@ -1,8 +1,10 @@
 package test
 
 import (
+	"path"
 	"testing"
 
+	"github.com/gruntwork-io/terratest/modules/files"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 	"github.com/stretchr/testify/assert"
@@ -10,6 +12,7 @@ import (
 
 func TestRandomWithCakeExample(t *testing.T) {
 	tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../..", "examples/with_cake")
+	files.CopyFile(path.Join("..", "..", ".tool-versions"), path.Join(tempTestFolder, ".tool-versions"))
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: tempTestFolder,
 		PlanFilePath: "terraform.tfplan",
