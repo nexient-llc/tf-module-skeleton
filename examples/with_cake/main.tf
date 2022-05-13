@@ -1,5 +1,5 @@
 resource "random_integer" "cake_pos" {
-  max = var.length - 1
+  max = var.length - 2
   min = 1
 }
 
