@@ -2,9 +2,11 @@ package test
 
 // Basic imports
 import (
+	"path"
 	"regexp"
 	"testing"
 
+	"github.com/gruntwork-io/terratest/modules/files"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 	"github.com/stretchr/testify/suite"
@@ -21,6 +23,7 @@ type TerraTestSuiteWithCake struct {
 // setup to do before any test runs
 func (suite *TerraTestSuiteWithCake) SetupSuite() {
 	tempTestFolder := test_structure.CopyTerraformFolderToTemp(suite.T(), "../..", "examples/with_cake")
+	_ = files.CopyFile(path.Join("..", "..", ".tool-versions"), path.Join(tempTestFolder, ".tool-versions"))
 	suite.TerraformOptions = terraform.WithDefaultRetryableErrors(suite.T(), &terraform.Options{
 		TerraformDir: tempTestFolder,
 	})
