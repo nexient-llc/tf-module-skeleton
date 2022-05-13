@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -12,8 +13,9 @@ var ApprovedProviders = []string{
 }
 
 func TestRandomDefaultExample(t *testing.T) {
+	tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../..", ".")
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../..",
+		TerraformDir: tempTestFolder,
 		PlanFilePath: "terraform.tfplan",
 	})
 
