@@ -7,6 +7,28 @@ This repository contains a reference terraform module
 ## How to Use This Repo
 This repo is intended to be used as a template for any new TF module. In some cases, we're able to use our VCS to template for us. In other cases, we aren't.
 
+### Prerequisites
+
+- [asdf](https://github.com/asdf-vm/asdf) used for tool version management
+- [repo](https://android.googlesource.com/tools/repo) used to pull in all compenents to create the full repo template
+
+### Repo Init
+
+Run the following commands to prep repo and enable all `Makefile` commands to run
+```
+asdf plugin add terraform
+asdf plugin add tflint
+asdf plugin add golang
+asdf plugin add golangci-lint
+asdf plugin add nodejs
+asdf plugin add opa
+asdf plugin add conftest
+asdf plugin add pre-commit
+asdf plugin add terragrunt
+
+asdf install
+```
+
 ### Templating
 
 #### Manual Templating
