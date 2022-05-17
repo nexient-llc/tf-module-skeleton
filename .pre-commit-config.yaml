@@ -1,26 +1,32 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
     hooks:
-    -   id: trailing-whitespace
--   repo: https://github.com/kintoandar/pre-commit
+      - id: trailing-whitespace
+  - repo: https://github.com/kintoandar/pre-commit
     rev: v2.1.2
     hooks:
-    -   id: terraform_fmt
-    -   id: terraform_validate
--   repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.3.0
+      - id: terraform_fmt
+      - id: terraform_validate
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v1.46.2
     hooks:
-    -   id: pretty-format-golang
--   repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+      - id: golangci-lint
+        name: golangci-lint
+        description: Fast linters runner for Go.
+        entry: golangci-lint run --fix
+        types: [go]
+        language: golang
+        pass_filenames: false
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v8.0.0
     hooks:
-    -   id: commitlint
+      - id: commitlint
         stages: [commit-msg]
-        additional_dependencies: ['@commitlint/config-conventional']
--   repo: https://github.com/Yelp/detect-secrets
+        additional_dependencies: ["@commitlint/config-conventional"]
+  - repo: https://github.com/Yelp/detect-secrets
     rev: v1.2.0
     hooks:
-    -   id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
+      - id: detect-secrets
+        args: ["--baseline", ".secrets.baseline"]
         exclude: package.lock.json
