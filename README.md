@@ -9,8 +9,8 @@ This repo is intended to be used as a template for any new TF module. In some ca
 
 ### Prerequisites
 
-- [asdf](https://github.com/asdf-vm/asdf), used for tool version management
-- [repo](https://android.googlesource.com/tools/repo); used to pull in all compenents to create the full repo template
+- [asdf](https://github.com/asdf-vm/asdf) used for tool version management
+- [repo](https://android.googlesource.com/tools/repo) used to pull in all compenents to create the full repo template
 
 ### Repo Init
 
