@@ -11,6 +11,10 @@ JOB_EMAIL ?= job@job.job
 COMPONENTS_DIR = components
 -include $(COMPONENTS_DIR)/Makefile
 
+.PHONY: configure-git-hooks
+configure-git-hooks:
+	pre-commit install
+
 ifeq ($(IS_PIPELINE),true)
 .PHONY: git-config
 git-config:
@@ -30,7 +34,7 @@ configure: git-config
 endif
 
 .PHONY: configure
-configure:
+configure: configure-git-hooks
 	repo init \
 		-u "$(REPO_MANIFESTS_URL)" \
 		-b "$(REPO_BRANCH)" \
