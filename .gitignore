@@ -3,6 +3,8 @@ terraform.*
 components/
 .semverbot.toml
 .tflint.hcl
+.golangci.yaml
+
 .idea
 !examples/*.tfvars
 
