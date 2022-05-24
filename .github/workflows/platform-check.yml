@@ -1,0 +1,15 @@
+name: platform-check
+on: [push, workflow_call]
+jobs:
+  configure:
+    runs-on: nexient-llc/platform-images
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          IS_PIPELINE=true make configure
+  check:
+    needs: [configure]
+    runs-on: nexient-llc/platform-images
+    steps:
+      - run: |
+          make check

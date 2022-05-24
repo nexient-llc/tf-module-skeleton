@@ -1,0 +1,33 @@
+name: platform-pipeline
+on:
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  # check:
+  #   runs-on: ubuntu-latest
+  #   uses: ./.github/workflows/pipeline-check.yml
+  configure:
+    runs-on: nexient-llc/platform-images
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          make configure
+  check:
+    needs: [configure]
+    runs-on: nexient-llc/platform-images
+    steps:
+      - run: |
+          make check
+  premerge:
+    runs-on: nexient-llc/platform-images
+    needs: [configure, check]
+    steps:
+      - run: |
+          git merge --no-commit --no-ff "origin/${PR_BRANCH}" && echo -e "Merge simulation successful" || exit 1
+  version:
+    runs-on: nexient-llc/platform-images
+    needs: [configure, check, premerge]
+    steps:
+      - run: |
+          make release
