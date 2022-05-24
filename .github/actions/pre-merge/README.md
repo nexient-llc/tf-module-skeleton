@@ -1,6 +1,6 @@
 ## Inputs
 
-* `branch`: target branch to conduct pre-merge check with (default: pull_request.base.ref)
+* `branch`: target branch to conduct pre-merge check with (default: github.event.pull_request.base.ref)
 
 ## Example
 

@@ -1,6 +1,6 @@
 ## Inputs
 
-* ``: (default: )
+* `mode`: Sets the versioning type to use. For options see https://github.com/restechnica/semverbot#modes (default: "auto")
 
 ## Example
 
