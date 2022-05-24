@@ -4,11 +4,12 @@ author: "Nexient DevSecOps"
 
 inputs:
   branch:
-    description: "source branch to conduct pre-merge check with"
+    description: "target branch to conduct pre-merge check with"
+    default: github.event.pull_request.base.ref
 runs:
   using: "composite"
-  # branch: github.
   steps:
     - name: "pre-merge"
       run: |
         git merge --no-commit --no-ff "${{ inputs.branch }}" && echo -e "Merge simulation successful" || exit 1
+      shell: bash

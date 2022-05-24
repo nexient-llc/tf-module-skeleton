@@ -1,0 +1,11 @@
+name: "Make Release Action"
+description: "Run Make Release"
+author: "Nexient DevSecOps"
+
+runs:
+  using: "composite"
+  steps:
+    - name: make release
+      run: |
+        make release
+      shell: bash

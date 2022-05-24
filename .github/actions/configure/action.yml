@@ -1,0 +1,24 @@
+name: "Make Configure Action"
+description: "Run Make Configure"
+author: "Nexient DevSecOps"
+
+inputs:
+  IS_PIPELINE:
+    description: "Denote if running in a pipeline context"
+    default: true
+  JOB_NAME:
+    description: "Sets the git user's name for the job"
+    required: true
+  JOB_EMAIL:
+    description: "Sets the git user's email for the job"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: make configure
+      shell: bash
+      run: |
+        JOB_NAME=${{ inputs.JOB_NAME }} \
+        JOB_EMAIL=${{ inputs.JOB_EMAIL }} \
+        IS_PIPELINE=${{ inputs.IS_PIPELINE }} \
+        make configure

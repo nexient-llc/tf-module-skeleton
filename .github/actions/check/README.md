@@ -1,16 +1,15 @@
 ## Example
 
 ```yaml
-name: "Run Make Check"
-on: push
+name: "Example Workflow"
+on: [push, pull_request]
 
 jobs:
-  dockerfile-test:
+  check:
     runs-on: nexient-llc/platform-images
     steps:
     - name: checkout source
       uses: actions/checkout@master
-
-    - name: Run Container Tests
+    - name: Run make check
       uses: ./.github/actions/check
 ```

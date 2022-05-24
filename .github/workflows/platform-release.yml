@@ -1,4 +1,4 @@
-name: platform-pipeline
+name: pipeline-release
 on:
   pull_request:
     branches:
@@ -9,10 +9,9 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
-      - name: Run Make Check
-        uses: ./.github/actions/check
-      - name: Run Pre-merge
-        uses: ./.github/actions/pre-merge
-      - name: Run Make Release
-        run: |
-          make release
+      - uses: ./.github/actions/configure
+        with:
+          JOB_NAME: "job"
+          JOB_EMAIL: "job@job.job"
+      - uses: ./.github/actions/check
+      - uses: ./.github/actions/release
