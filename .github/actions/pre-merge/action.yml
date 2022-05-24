@@ -1,0 +1,14 @@
+name: "Run Pre-merge"
+description: "Run Pre-merge"
+author: "Nexient DevSecOps"
+
+inputs:
+  branch:
+    description: "source branch to conduct pre-merge check with"
+runs:
+  using: "composite"
+  # branch: github.
+  steps:
+    - name: "pre-merge"
+      run: |
+        git merge --no-commit --no-ff "${{ inputs.branch }}" && echo -e "Merge simulation successful" || exit 1

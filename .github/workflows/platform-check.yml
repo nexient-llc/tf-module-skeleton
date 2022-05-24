@@ -4,7 +4,7 @@ jobs:
   check:
     runs-on: nexient-llc/platform-images
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          IS_PIPELINE=true make configure
-          make check
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Run Make Check
+        uses: ./.github/actions/check

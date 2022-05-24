@@ -4,30 +4,15 @@ on:
     branches:
       - 'main'
 jobs:
-  # check:
-  #   runs-on: ubuntu-latest
-  #   uses: ./.github/workflows/pipeline-check.yml
-  configure:
+  release:
     runs-on: nexient-llc/platform-images
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          make configure
-  check:
-    needs: [configure]
-    runs-on: nexient-llc/platform-images
-    steps:
-      - run: |
-          make check
-  premerge:
-    runs-on: nexient-llc/platform-images
-    needs: [configure, check]
-    steps:
-      - run: |
-          git merge --no-commit --no-ff "origin/${PR_BRANCH}" && echo -e "Merge simulation successful" || exit 1
-  version:
-    runs-on: nexient-llc/platform-images
-    needs: [configure, check, premerge]
-    steps:
-      - run: |
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Run Make Check
+        uses: ./.github/actions/check
+      - name: Run Pre-merge
+        uses: ./.github/actions/pre-merge
+      - name: Run Make Release
+        run: |
           make release
