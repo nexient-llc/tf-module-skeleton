@@ -2,10 +2,27 @@ name: "Make Check Action"
 description: "Run Make Check"
 author: "Nexient DevSecOps"
 
+inputs:
+  disableMakeCheckLint:
+    description: disables the linting via make check
+    default: true
+  disableGoLangCILintAction:
+    description: disables linting via golang ci lint action
+    default: false
 runs:
   using: "composite"
   steps:
+    - uses: actions/setup-go@v3
+      with:
+        go-version: 1.17
+    - name: Go CI Lint
+      if: inputs.disableGoLangCILintAction
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: v1.46
+        args: --timeout=6m
     - name: make check
       run: |
+        DISABLE_MAKE_CHECK_LINT=${{ inputs.disableMakeCheckLint }} \
         make check
       shell: bash
