@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: fix github known_hosts issues
         run: mkdir -m 0700 -p ~/.ssh && ssh-keyscan github.com | tee -a ~/.ssh/known_hosts
       - uses: ./.github/actions/configure

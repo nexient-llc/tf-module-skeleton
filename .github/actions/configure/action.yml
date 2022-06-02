@@ -30,6 +30,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: git safe directory
+      shell: bash
+      run: |
+        git config --global --add safe.directory /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}
     - name: make configure
       shell: bash
       run: |
