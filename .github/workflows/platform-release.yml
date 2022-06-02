@@ -5,7 +5,9 @@ on:
       - 'main'
 jobs:
   release:
-    runs-on: nexientdevops/platform-images
+    runs-on: ubuntu-latest
+    container:
+      image: nexientdevops/platform-images
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
