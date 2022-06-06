@@ -6,16 +6,25 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: |
+      (
+        startsWith(github.event.repository.name, 'tf-')        ||
+        github.event.repository.name == 'platform-components'  ||
+        github.event.repository.name == 'platform-images'      ||
+        github.event.repository.name == 'module-manifest'      ||
+        endsWith(github.event.repository.name, '-cloud-shell') ||
+        startsWith(github.event.repository.name, 'magicdust')
+      )
+      && hashFile("./makefile") != ""
     container:
       image: nexientdevops/platform-images
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
-      - name: fix github known_hosts issues
-        run: mkdir -m 0700 -p ~/.ssh && ssh-keyscan github.com | tee -a ~/.ssh/known_hosts
       - uses: ./.github/actions/configure
         with:
           JOB_NAME: "job"
           JOB_EMAIL: "job@job.job"
       - uses: ./.github/actions/check
+      - uses: ./.github/actions/pre-merge
       - uses: ./.github/actions/release

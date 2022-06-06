@@ -9,6 +9,11 @@
 - `REPO_MANIFEST`: The file in the repo manifest repository that contains the manifest's index (default: "tf_modules.xml")
 - `COMPONENTS_DIR`: Directory for components to be installed to (default: "components")
 
+## Notes
+
+- There was issues related to CVE-2022-24765 resulting in the action instructing git that the parent directory created by github is safe to traverse with the container user.
+- Occasionally github.com is not found within the known_hosts file resulting in the pipeline to fail. This is fixed by prefetching the github.com ssh key and pre-emptively adding it to the known_hosts file.
+
 ## Example
 
 ```yaml

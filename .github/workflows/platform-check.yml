@@ -3,6 +3,16 @@ on: [push, workflow_call]
 jobs:
   check:
     runs-on: ubuntu-latest
+    if: |
+      (
+        startsWith(github.event.repository.name, 'tf-')        ||
+        github.event.repository.name == 'platform-components'  ||
+        github.event.repository.name == 'platform-images'      ||
+        github.event.repository.name == 'module-manifest'      ||
+        endsWith(github.event.repository.name, '-cloud-shell') ||
+        startsWith(github.event.repository.name, 'magicdust')
+      )
+      && hashFile("./makefile") != ""
     container:
       image: nexientdevops/platform-images
     steps:
@@ -13,3 +23,4 @@ jobs:
           JOB_NAME: "job"
           JOB_EMAIL: "job@job.job"
       - uses: ./.github/actions/check
+      - uses: ./.github/actions/pre-merge
