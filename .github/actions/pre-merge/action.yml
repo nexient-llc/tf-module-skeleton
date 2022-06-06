@@ -5,7 +5,7 @@ author: "Nexient DevSecOps"
 inputs:
   branch:
     description: "target branch to conduct pre-merge check with"
-    default: github.event.pull_request.base.ref
+    default: ${{ github.event.pull_request.base.ref }}
 runs:
   using: "composite"
   steps:
