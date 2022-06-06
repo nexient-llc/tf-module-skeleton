@@ -15,7 +15,7 @@ jobs:
         endsWith(github.event.repository.name, '-cloud-shell') ||
         startsWith(github.event.repository.name, 'magicdust')
       )
-      && hashFile("./makefile") != ""
+      && hashFiles("./makefile") != ""
     container:
       image: nexientdevops/platform-images
     steps:
