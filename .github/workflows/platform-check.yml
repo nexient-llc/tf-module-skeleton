@@ -15,5 +15,3 @@ jobs:
           JOB_EMAIL: "job@job.job"
       - uses: ./.github/actions/check
       - uses: ./.github/actions/pre-merge
-        with:
-          branch: main
