@@ -5,7 +5,7 @@ author: "Nexient DevSecOps"
 inputs:
   branch:
     description: "target branch to conduct pre-merge check with"
-    default: "main"
+    default: "origin/main"
 runs:
   using: "composite"
   steps:
