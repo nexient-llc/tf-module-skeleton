@@ -3,4 +3,4 @@ on: [push]
 jobs:
   check:
     runs-on: ubuntu-latest
-    uses: nexient-llc/.github/workflows/platform-check.yml@feature/DEVOPS-61
+    uses: nexient-llc/.github/workflows/platform-check.yml@0282568081885110f0d358de443c3870d5e91879
