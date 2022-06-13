@@ -1,0 +1,6 @@
+name: pipeline-check
+on: [push]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    uses: nexient-llc/.github/workflows/platform-check.yml@feature/DEVOPS-61

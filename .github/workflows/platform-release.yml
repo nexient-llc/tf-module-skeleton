@@ -1,0 +1,9 @@
+name: pipeline-check
+on:
+  pull_request:
+    branches:
+      - 'main'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    uses: nexient-llc/.github/workflows/platform-release.yml@feature/DEVOPS-61
