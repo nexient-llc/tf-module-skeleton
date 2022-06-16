@@ -22,10 +22,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: ./.github/actions/configure
+      - uses: nexient-llc/.github/actions/configure
         with:
           JOB_NAME: "job"
           JOB_EMAIL: "job@job.job"
-      - uses: ./.github/actions/check
-      - uses: ./.github/actions/pre-merge
-      - uses: ./.github/actions/release
+      - uses: nexient-llc/.github/actions/check
+      - uses: nexient-llc/.github/actions/pre-merge
+      - uses: nexient-llc/.github/actions/release
