@@ -21,11 +21,11 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # pull entire history to ensure pre-merge functions properly
       - uses: nexient-llc/.github/actions/configure@main
         with:
-          JOB_NAME: "job"
-          JOB_EMAIL: "job@job.job"
+          JOB_NAME: "job" # TODO: Update with GitHub SA information
+          JOB_EMAIL: "job@job.job" # TODO: Update with GitHub SA information
       - uses: nexient-llc/.github/actions/check@main
       - uses: nexient-llc/.github/actions/pre-merge@main
       - uses: nexient-llc/.github/actions/release@main
