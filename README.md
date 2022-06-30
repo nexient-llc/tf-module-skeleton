@@ -47,14 +47,6 @@ vi .git/HEAD
 Change the HEAD to point to `main` instead of `master` and save the `HEAD`
 ```
 
-#### VCS Templating
-
-This applies to systems like GitHub.
-
-TBD
-
-### Repo Setup
-
 #### Remove Educational Material
 
 We need to clear out the example code (different from the boilerplate code). We want to save the repo structure; we don't need the contents. There are `examples`, and `tests` that apply to the boilerplate that we're not going to need as developers of new modules.
@@ -67,6 +59,16 @@ rm -rf examples/*
 rm -rf README.md
 mv TEMPLATED_README.md README.md
 ```
+
+#### Version Control (VCS) Templating
+
+This applies to systems like GitHub.
+
+TBD
+
+### Repo Setup
+
+
 
 #### Module Configuration
 
