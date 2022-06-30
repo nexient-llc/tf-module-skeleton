@@ -10,7 +10,7 @@ This repo is intended to be used as a template for any new TF module. In some ca
 ### Prerequisites
 
 - [asdf](https://github.com/asdf-vm/asdf) used for tool version management
-- [repo](https://android.googlesource.com/tools/repo) used to pull in all compenents to create the full repo template
+- [repo](https://android.googlesource.com/tools/repo) used to pull in all components to create the full repo template
 
 ### Repo Init
 
@@ -100,6 +100,6 @@ mv TEMPLATED_README.md README.md
 - Modules are how Go manages dependencies
 - To initiate a new modules run the command: `go mod init [repo_url]`
   - It is recommended to use the absolute repository url (e.g. github.com/nexient-llc/tf-module-skeleton)
-- Relative path is highly discrouraged in Go, use absolute path to import a package
+- Relative path is highly discouraged in Go, use absolute path to import a package
   - (e.g. `github.com/nexient-llc/tf-module-skeleton/[path_to_file]`)
 - To update paths or versions run the command: `go get -t ./...`  go will update the dependencies accordingly
