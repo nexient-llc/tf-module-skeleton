@@ -79,7 +79,7 @@ provider "azurerm" {
 ```
 - A file named `terraform.tfvars` which contains key value pair of variables used.
 
-Note that since these files are added in `gitgnore` they would not be checked in into primitive/segment's git repo.
+Note that since these files are added in `gitignore` they would not be checked in into primitive/segment's git repo.
 
 After creating these files, for running tests associated with the primitive/segment, run
 
