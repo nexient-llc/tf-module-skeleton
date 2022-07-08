@@ -4,6 +4,13 @@
 # repo then mentioned above as they will be overwritten upon the
 # next sync.
 
+# NOTE: we are temporarily throwing the kitchen sink of variables
+# at the workflow until we come up with a better solution at a
+# future date.
+env:
+  TF_VAR_github_org: ${{ secrets.TF_VAR_GITHUB_ORG }}
+  TF_VAR_github_token:  ${{ secrets.TF_VAR_GITHUB_TOKEN }}
+
 name: pipeline-release
 on:
   pull_request:
@@ -11,6 +18,9 @@ on:
       - 'main'
     types:
       - closed
+    paths:
+      - '**'
+      - '!.github/**'
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -23,9 +33,6 @@ jobs:
         with:
           fetch-depth: 0 # pull entire history to ensure pre-merge functions properly
       - uses: nexient-llc/.github/actions/configure@main
-        with:
-          JOB_NAME: "job" # TODO: Update with GitHub SA information
-          JOB_EMAIL: "job@job.job" # TODO: Update with GitHub SA information
       - uses: nexient-llc/.github/actions/check@main
       - uses: nexient-llc/.github/actions/pre-merge@main
       - uses: nexient-llc/.github/actions/release@main
