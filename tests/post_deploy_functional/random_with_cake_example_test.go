@@ -31,7 +31,7 @@ func (suite *TerraTestSuiteWithCake) SetupSuite() {
 }
 
 // TearDownAllSuite has a TearDownSuite method, which will run after all the tests in the suite have been run.
-func (suite *TerraTestSuiteWithCake) TearDownSuit() {
+func (suite *TerraTestSuiteWithCake) TearDownSuite() {
 	terraform.Destroy(suite.T(), suite.TerraformOptions)
 }
 
