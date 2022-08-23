@@ -1,10 +1,14 @@
 # Your Module Name
 
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
 ## Overview
 
 What does this module do?
 
 ## Pre-Commit hooks
+
 [.pre-commit-config.yaml](.pre-commit-config.yaml) file defines certain `pre-commit` hooks that are relevant to terraform, golang and common linting tasks. There are no custom hooks added.
 
 `commitlint` hook enforces commit message in certain format. The commit contains the following structural elements, to communicate intent to the consumers of your commit messages:
@@ -30,8 +34,10 @@ If you are a developer using vscode, [this](https://marketplace.visualstudio.com
 `detect-secrets-hook` prevents new secrets from being introduced into the baseline. TODO: INSERT DOC LINK ABOUT HOOKS
 
 In order for `pre-commit` hooks to work properly
+
 - You need to have the pre-commit package manager installed. [Here](https://pre-commit.com/#install) are the installation instructions.
 - `pre-commit` would install all the hooks when commit message is added by default except for `commitlint` hook. `commitlint` hook would need to be installed manually using the command below
+
 ```
 pre-commit install --hook-type commit-msg
 ```
@@ -70,6 +76,7 @@ make env
 
 **Pre-requisites**
 Before running this target it is important to ensure that, developer has created files mentioned below on local workstation under root directory of git repository that contains code for primitives/segments. Note that these files are `azure` specific. If primitive/segment under development uses any other cloud provider than azure, this section may not be relevant.
+
 - A file named `provider.tf` with contents below
 
 ```
@@ -77,6 +84,7 @@ provider "azurerm" {
   features {}
 }
 ```
+
 - A file named `terraform.tfvars` which contains key value pair of variables used.
 
 Note that since these files are added in `gitignore` they would not be checked in into primitive/segment's git repo.
@@ -90,6 +98,7 @@ make check
 If `make check` target is successful, developer is good to commit the code to primitive/segment's git repo.
 
 `make check` target
+
 - runs `terraform commands` to `lint`,`validate` and `plan` terraform code.
 - runs `conftests`. `conftests` make sure `policy` checks are successful.
 - runs `terratest`. This is integration test suit.
