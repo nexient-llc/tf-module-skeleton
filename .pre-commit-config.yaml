@@ -15,8 +15,8 @@ repos:
       - id: mixed-line-ending
         args:
           - --fix=auto
-  - repo: https://github.com/kintoandar/pre-commit
-    rev: v2.1.2
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.74.1
     hooks:
       - id: terraform_fmt
       - id: terraform_validate

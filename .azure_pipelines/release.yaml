@@ -18,6 +18,5 @@ steps:
 - script: |
     export GIT_CREDENTIALS=$(System.AccessToken)
     make GIT_TOKEN=$(System.AccessToken) configure
-    make release 
+    make release
     make clean
-    
