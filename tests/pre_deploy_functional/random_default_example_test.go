@@ -15,6 +15,7 @@
 package test
 
 import (
+	"os"
 	"path"
 	"testing"
 
@@ -31,8 +32,11 @@ var ApprovedProviders = []string{
 func TestRandomDefaultExample(t *testing.T) {
 	tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, path.Join("..", ".."), ".")
 	_ = files.CopyFile(path.Join("..", "..", ".tool-versions"), path.Join(tempTestFolder, ".tool-versions"))
+	pwd, _ := os.Getwd()
+
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: tempTestFolder,
+		VarFiles:     [](string){path.Join(pwd, "..", "test.tfvars")},
 		PlanFilePath: "terraform.tfplan",
 	})
 
