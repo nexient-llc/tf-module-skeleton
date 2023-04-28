@@ -12,9 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/module-manifests.git
+# this will always point here
+REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
+# this eventually will point to a git tag
 REPO_BRANCH ?= main
-REPO_MANIFEST ?= tf_modules.xml
+# this should point to a seed manifest
+REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
+
+# Settings to pull in nexient version of (google) repo utility that supports environment substitution:
+REPO_URL ?= https://github.com/nexient-llc/git-repo.git
+REPO_REV ?= main
+export REPO_REV REPO_URL
+
+# Example variable to substituted after init, but before sync in repo manifests.
+GITBASE ?= https://github.com/nexient-llc/
+GITREV ?= main
+export GITBASE GITREV
 
 # Set to true in a pipeline context
 IS_PIPELINE ?= false
@@ -59,10 +72,11 @@ endif
 
 .PHONY: configure
 configure: configure-git-hooks
-	repo --color=never init \
+	repo --color=never init --no-repo-verify \
 		-u "$(REPO_MANIFESTS_URL)" \
 		-b "$(REPO_BRANCH)" \
 		-m "$(REPO_MANIFEST)"
+	repo envsubst
 	repo sync
 
 # The first line finds and removes all the directories pulled in by repo
@@ -70,5 +84,13 @@ configure: configure-git-hooks
 # https://stackoverflow.com/questions/42828021/removing-files-with-rm-using-find-and-xargs
 .PHONY: clean
 clean:
-	repo list | awk '{ print $1; }' | cut -d '/' -f1 | uniq | xargs rm -rf
+	-repo list | awk '{ print $1; }' | cut -d '/' -f1 | uniq | xargs rm -rf
 	find . -type l ! -exec test -e {} \; -print | xargs rm -rf
+
+.PHONY: init-clean
+init-clean:
+	rm -rf .git
+	git init --initial-branch=main
+ifneq (,$(wildcard ./TEMPLATED_README.md))
+	mv TEMPLATED_README.md README.MD
+endif
