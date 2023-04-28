@@ -1,4 +1,4 @@
-// Copyright 2022 Nexient LLC
+// Copyright 2023 Nexient LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,11 @@ terraform {
   required_version = ">= 1.1.0"
 
   required_providers {
+<<<<<<< HEAD
     aws    = ">= 3.57.0"
     random = ">= 3.4.3"
+=======
+    aws = ">= 3.28.0"
+>>>>>>> 1339581 (Added sample terragrunt configuration)
   }
 }

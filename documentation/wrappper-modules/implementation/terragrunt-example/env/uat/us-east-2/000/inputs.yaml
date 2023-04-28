@@ -1,0 +1,31 @@
+environment_num: "000"
+
+vpc_id: "vpc-0ef9308b911060ada"
+private_subnets:
+  - subnet-04ff1adf0301f2b8e
+  - subnet-084db4931651fdce7
+  - subnet-03b9bd3e9a448a3f7
+
+resource_names_map:
+  cache: memache
+  security_group: sg
+
+ingress_rules:
+  - cidr_blocks: "0.0.0.0/0"
+    from_port: 11211
+    to_port: 11211
+    protocol: "tcp"
+
+egress_rules:
+  - cidr_blocks: "0.0.0.0/0"
+    from_port: 0
+    to_port: 0
+    protocol: "-1"
+
+cluster_size: 3
+az_mode: "cross-az"
+engine_version: "1.6.17"
+instance_type: "cache.r6g.large"
+elasticache_parameter_group_family: "memcached1.6"
+
+tags: {}

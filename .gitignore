@@ -4,12 +4,9 @@ components/
 .semverbot.toml
 .tflint.hcl
 .golangci.yaml
-
+.DS_Store
 .idea
 !examples/*.tfvars
-
-# We don't want to commit the test run lock files
-.terraform.lock.hcl
 
 # Local .terraform directories
 **/.terraform/*
@@ -20,6 +17,9 @@ components/
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+# auto tfvars
+*.auto.tfvars
 
 # Crash log files
 crash.log

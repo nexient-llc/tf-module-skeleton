@@ -54,17 +54,9 @@ This adds in several files and directories that are ignored by `git`. They expos
 
 2. The first target you care about is `env`. This is the common interface for setting up environment variables. The values of the environment variables will be used to authenticate with cloud provider from local development workstation.
 
-`make configure` command will bring down `azure_env.sh` file on local workstation. Devloper would need to modify this file, replace the environment variable values with relevant values.
+`make configure` command will bring down `aws_env.sh` file on local workstation. Developer would need to modify this file, replace the environment variable values with relevant values.
 
 These environment variables are used by `terratest` integration suit.
-
-Service principle used for authentication(value of ARM_CLIENT_ID) should have below privileges on resource group within the subscription.
-
-```
-"Microsoft.Resources/subscriptions/resourceGroups/write"
-"Microsoft.Resources/subscriptions/resourceGroups/read"
-"Microsoft.Resources/subscriptions/resourceGroups/delete"
-```
 
 Then run this make target to set the environment variables on developer workstation.
 
@@ -75,13 +67,14 @@ make env
 3. The first target you care about is `check`.
 
 **Pre-requisites**
-Before running this target it is important to ensure that, developer has created files mentioned below on local workstation under root directory of git repository that contains code for primitives/segments. Note that these files are `azure` specific. If primitive/segment under development uses any other cloud provider than azure, this section may not be relevant.
+Before running this target it is important to ensure that, developer has created files mentioned below on local workstation under root directory of git repository that contains code for primitives/segments. Note that these files are `aws` specific. If primitive/segment under development uses any other cloud provider than AWS, this section may not be relevant.
 
 - A file named `provider.tf` with contents below
 
 ```
-provider "azurerm" {
-  features {}
+provider "aws" {
+  profile = "<profile_name>"
+  region  = "<region_name>"
 }
 ```
 

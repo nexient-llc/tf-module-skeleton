@@ -1,4 +1,4 @@
-// Copyright 2022 Nexient LLC
+// Copyright 2023 Nexient LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,9 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+<<<<<<< HEAD
 
 resource "random_string" "string" {
   length  = var.length
   numeric = var.number
   special = var.special
 }
+=======
+>>>>>>> 1339581 (Added sample terragrunt configuration)

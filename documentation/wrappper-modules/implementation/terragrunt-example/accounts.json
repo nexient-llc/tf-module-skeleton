@@ -1,0 +1,8 @@
+{
+  "perf": "demo-perf-admin",
+  "preqa": "demo-preqa-admin",
+  "prod": "demo-prod-admin",
+  "qa": "demo-qa-admin",
+  "sandbox": "demo-sandbox-admin",
+  "uat": "demo-uat-admin"
+}
