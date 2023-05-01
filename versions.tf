@@ -16,11 +16,7 @@ terraform {
   required_version = ">= 1.1.0"
 
   required_providers {
-<<<<<<< HEAD
     aws    = ">= 3.57.0"
     random = ">= 3.4.3"
-=======
-    aws = ">= 3.28.0"
->>>>>>> 1339581 (Added sample terragrunt configuration)
   }
 }

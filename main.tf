@@ -11,12 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-<<<<<<< HEAD
 
 resource "random_string" "string" {
   length  = var.length
   numeric = var.number
   special = var.special
 }
-=======
->>>>>>> 1339581 (Added sample terragrunt configuration)
+
