@@ -4,6 +4,6 @@ golang 1.17.6
 golangci-lint 1.52.2
 nodejs 16.13.2
 opa 0.36.1
-conftest v0.30.0
+conftest 0.30.0
 pre-commit 2.17.0
 terragrunt 0.36.1
