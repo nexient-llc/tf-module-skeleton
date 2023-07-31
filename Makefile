@@ -47,13 +47,6 @@ JOB_EMAIL ?= job@job.job
 COMPONENTS_DIR = components
 -include $(COMPONENTS_DIR)/Makefile
 
-# .PHONY: loadvars
-# loadvars:
-# 	@test -s .cafenv && \
-# 	(echo "Found CAF environment file \(.cafenv\). Sourcing..." && \
-# 	set -a; source .cafenv; set +a) || \
-# 	echo "No CAF environment file detected. Will use defaults."
-
 .PHONY: configure-git-hooks
 configure-git-hooks:
 	pre-commit install
