@@ -12,14 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# this will always point here
+# Include custom values from .cafenv. $HOME is searched first, followed by the
+# local directory. Values found in .cafenv if it exists in the local directory
+# take precedence.
+CAF_ENV_FILE = .cafenv
+-include $(HOME)/$(CAF_ENV_FILE)
+-include $(CAF_ENV_FILE)
+
+# Source repository for repo manifests
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
-# this eventually will point to a git tag
+# Tag/Release/Branch of source repository for repo manifests
 REPO_BRANCH ?= main
-# this should point to a seed manifest
+# Path to seed manifest in repository
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
-# Settings to pull in nexient version of (google) repo utility that supports environment substitution:
+# Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
 REPO_URL ?= https://github.com/nexient-llc/git-repo.git
 REPO_REV ?= main
 export REPO_REV REPO_URL
@@ -39,6 +46,13 @@ JOB_EMAIL ?= job@job.job
 
 COMPONENTS_DIR = components
 -include $(COMPONENTS_DIR)/Makefile
+
+# .PHONY: loadvars
+# loadvars:
+# 	@test -s .cafenv && \
+# 	(echo "Found CAF environment file \(.cafenv\). Sourcing..." && \
+# 	set -a; source .cafenv; set +a) || \
+# 	echo "No CAF environment file detected. Will use defaults."
 
 .PHONY: configure-git-hooks
 configure-git-hooks:

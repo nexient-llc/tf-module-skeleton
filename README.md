@@ -14,13 +14,14 @@ This repo is intended to be used as a template for any new TF module. In some ca
 ### Prerequisites
 
 - [asdf](https://github.com/asdf-vm/asdf) used for tool version management
+- [make](https://www.gnu.org/software/make/) used for automating various functions of the repo
 - [repo](https://android.googlesource.com/tools/repo) used to pull in all components to create the full repo template
 
 ### Repo Init
 
 Run the following commands to prep repo and enable all `Makefile` commands to run
 
-```
+```shell
 asdf plugin add terraform
 asdf plugin add tflint
 asdf plugin add golang
@@ -42,7 +43,7 @@ This applies to systems like Azure DevOps and CodeCommit.
 
 We need to clone the repo, rename it, and start a fresh git history to get rid of the `tf-module-skeleton` history. Below is a loose explanation of how to do this.
 
-```
+``` shell
 git clone <this repo's URL>
 mv tf-module-skeleton tf-<whatever it is you're building>
 cd tf-<whatever it is you're building>
@@ -58,7 +59,7 @@ We need to clear out the example code (different from the boilerplate code). We 
 
 Note before you clear these things out, it's useful to actually understand what they are and why they're there. We'll be building our own as we go forward so we need to know what it is we're removing. If this isn't your first module, it's safe to fly through this. If this is your first (or your first several, even), take the time to read the code before you remove it.
 
-```
+```shell
 cd path/to/this/repo
 rm -rf examples/*
 rm -rf README.md
@@ -72,6 +73,10 @@ This applies to systems like GitHub.
 TBD
 
 ### Repo Setup
+
+#### Overriding Make Behavior
+
+When run, `make` will look for a file called `.cafenv` in `$HOME` and the local directory. This file if present will be included, and it can be used to override variables without altering the [Makefile](Makefile). A few examples of variables that can be substituted are commented out in the file. If `.cafenv` exists in both `$HOME` and the local directory, values set in the file in the local directory will take precedence.
 
 #### Module Configuration
 
@@ -91,9 +96,9 @@ TBD
   - Should have default values and be instantiable with minimal to no inputs
   - We can think of these default values as the "default example"
 - A `Makefile` provides tasks for terraform module development
-  - It will clone and cache `tf-module-components` and `platform-components` git repositories when a `make configure` is ran
+  - It will clone and cache `caf-components-tf-module` and `caf-components-platform` git repositories when a `make configure` is ran
   - For clearing cached components, it provides a `make clean` command
-  - Linter config and all other tasks are defined in `tf-module-components`
+  - Linter config and all other tasks are defined in `caf-components-tf-module`
 - An `examples` folder contains example uses of the default and nested modules
   - There should be at least one example for each nested module
 - A `tests` folder contains Go functional tests
