@@ -12,18 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Include custom values from .cafenv. $HOME is searched first, followed by the
-# local directory. Values found in .cafenv if it exists in the local directory
-# take precedence.
+# Include custom values from .cafenv. Repository root is assumed to be the working directory.
+# Including overriding values in this file is preferred over modifying the contents below.
 CAF_ENV_FILE = .cafenv
--include $(HOME)/$(CAF_ENV_FILE)
 -include $(CAF_ENV_FILE)
 
 # Source repository for repo manifests
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
-# Tag/Release/Branch of source repository for repo manifests
+# Branch of source repository for repo manifests. Other tags not currently supported.
 REPO_BRANCH ?= main
-# Path to seed manifest in repository
+# Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
 # Settings to pull in Nexient version of (google) repo utility that supports environment substitution:

@@ -76,7 +76,7 @@ TBD
 
 #### Overriding Make Behavior
 
-When run, `make` will look for a file called `.cafenv` in `$HOME` and the local directory. This file if present will be included, and it can be used to override variables without altering the [Makefile](Makefile). A few examples of variables that can be substituted are commented out in the file. If `.cafenv` exists in both `$HOME` and the local directory, values set in the file in the local directory will take precedence.
+When run, `make` will look for a file called `.cafenv` in the repository root. This file if present will be included, and it can be used to override variables without altering the [Makefile](Makefile). A few examples of variables that can be substituted are commented out in [the file](.cafenv).
 
 #### Module Configuration
 
