@@ -26,6 +26,7 @@ REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
 # Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
 REPO_URL ?= https://github.com/nexient-llc/git-repo.git
+# Branch of the repository referenced by REPO_URL to use
 REPO_REV ?= main
 export REPO_REV REPO_URL
 
