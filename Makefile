@@ -12,15 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# this will always point here
+# Include custom values from .cafenv. Repository root is assumed to be the working directory.
+# Including overriding values in this file is preferred over modifying the contents below.
+CAF_ENV_FILE = .cafenv
+-include $(CAF_ENV_FILE)
+
+# Source repository for repo manifests
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
-# this eventually will point to a git tag
+# Branch of source repository for repo manifests. Other tags not currently supported.
 REPO_BRANCH ?= main
-# this should point to a seed manifest
+# Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
-# Settings to pull in nexient version of (google) repo utility that supports environment substitution:
+# Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
 REPO_URL ?= https://github.com/nexient-llc/git-repo.git
+# Branch of the repository referenced by REPO_URL to use
 REPO_REV ?= main
 export REPO_REV REPO_URL
 
