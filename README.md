@@ -115,3 +115,42 @@ When run, `make` will look for a file called `.cafenv` in the repository root. T
 - Relative path is highly discouraged in Go, use absolute path to import a package
   - (e.g. `github.com/nexient-llc/tf-module-skeleton/[path_to_file]`)
 - To update paths or versions run the command: `go get -t ./...`  go will update the dependencies accordingly
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.14.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.5.1 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [random_string.string](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_length"></a> [length](#input\_length) | n/a | `number` | `24` | no |
+| <a name="input_number"></a> [number](#input\_number) | n/a | `bool` | `true` | no |
+| <a name="input_special"></a> [special](#input\_special) | n/a | `bool` | `false` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_string"></a> [string](#output\_string) | n/a |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
