@@ -1,5 +1,3 @@
-# Copyright 2023 Nexient LLC
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -20,6 +18,7 @@ CAF_ENV_FILE = .cafenv
 # Source repository for repo manifests
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
+# TODO: replace with git tag when supported
 REPO_BRANCH ?= main
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
@@ -27,11 +26,13 @@ REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 # Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
 REPO_URL ?= https://github.com/nexient-llc/git-repo.git
 # Branch of the repository referenced by REPO_URL to use
+# TODO: replace with git tag when supported
 REPO_REV ?= main
 export REPO_REV REPO_URL
 
 # Example variable to substituted after init, but before sync in repo manifests.
 GITBASE ?= https://github.com/nexient-llc/
+# TODO: replace with git tag when supported
 GITREV ?= main
 export GITBASE GITREV
 

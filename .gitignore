@@ -57,3 +57,6 @@ azure_env.sh
 
 # Pre-commit hook
 .pre-commit-config.yaml
+
+# VS Code
+.vscode/
