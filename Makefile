@@ -19,7 +19,8 @@ CAF_ENV_FILE = .cafenv
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
 # TODO: replace with git tag when supported
-REPO_BRANCH ?= main
+REPO_MANIFESTS_VER ?= refs/tags/0.1.0
+
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
@@ -33,8 +34,7 @@ export REPO_REV REPO_URL
 # Example variable to substituted after init, but before sync in repo manifests.
 GITBASE ?= https://github.com/nexient-llc/
 # TODO: replace with git tag when supported
-GITREV ?= main
-export GITBASE GITREV
+export GITBASE
 
 # Set to true in a pipeline context
 IS_PIPELINE ?= false
@@ -81,7 +81,7 @@ endif
 configure: configure-git-hooks
 	repo --color=never init --no-repo-verify \
 		-u "$(REPO_MANIFESTS_URL)" \
-		-b "$(REPO_BRANCH)" \
+		-b "$(REPO_MANIFESTS_VER)" \
 		-m "$(REPO_MANIFEST)"
 	repo envsubst
 	repo sync
