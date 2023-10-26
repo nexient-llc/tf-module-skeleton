@@ -19,16 +19,15 @@ CAF_ENV_FILE = .cafenv
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
 # TODO: replace with git tag when supported
-REPO_BRANCH ?= main
+REPO_BRANCH ?= refs/tags/0.1.1
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
-# Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
-REPO_URL ?= https://github.com/nexient-llc/git-repo.git
-# Branch of the repository referenced by REPO_URL to use
-# TODO: replace with git tag when supported
-REPO_REV ?= main
-export REPO_REV REPO_URL
+# Optional settings to pull in a different version of the repo utility.
+# REPO_URL ?= https://github.com/nexient-llc/git-repo.git
+# Branch or refs/tags of the repository referenced by REPO_URL to use
+# REPO_REV ?= main
+# export REPO_REV REPO_URL
 
 # Example variable to substituted after init, but before sync in repo manifests.
 GITBASE ?= https://github.com/nexient-llc/
@@ -83,8 +82,10 @@ configure: configure-git-hooks
 		-u "$(REPO_MANIFESTS_URL)" \
 		-b "$(REPO_BRANCH)" \
 		-m "$(REPO_MANIFEST)"
-	repo envsubst
-	repo sync
+    # Loop through files and substitute variables
+	find .repo/manifests -type f -exec sed -i -e "s|\$${GITBASE}|${GITBASE}|" ./{} \;
+    # Use the version of repo that was downloaded during "repo init" command above
+	.repo/repo/repo sync
 
 # The first line finds and removes all the directories pulled in by repo
 # The second line finds and removes all the broken symlinks from removing things
