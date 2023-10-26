@@ -19,7 +19,7 @@ CAF_ENV_FILE = .cafenv
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
 # TODO: replace with git tag when supported
-REPO_BRANCH ?= main
+REPO_BRANCH ?= refs/tags/0.1.1
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
@@ -76,16 +76,17 @@ endef
 configure: git-auth
 endif
 
+# First, run repo init
+# Then, loop through files and substitute variables
+# Finally, Use the version of repo that was downloaded during "repo init" command above
 .PHONY: configure
 configure: configure-git-hooks
 	repo --color=never init --no-repo-verify \
 		-u "$(REPO_MANIFESTS_URL)" \
 		-b "$(REPO_BRANCH)" \
 		-m "$(REPO_MANIFEST)"
-    # Loop through files and substitute variables
-    find .repo/manifests -type f -exec sed -i -e "s|\$${GITBASE}|${GITBASE}|" ./{} \;
-    # Use the version of repo that was downloaded during "repo init" command above
-    .repo/repo/repo sync
+	find .repo/manifests -type f -exec sed -i -e "s|\$${GITBASE}|${GITBASE}|" ./{} \;
+	.repo/repo/repo sync
 
 # The first line finds and removes all the directories pulled in by repo
 # The second line finds and removes all the broken symlinks from removing things
