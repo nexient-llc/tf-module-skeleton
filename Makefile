@@ -83,9 +83,9 @@ configure: configure-git-hooks
 		-b "$(REPO_BRANCH)" \
 		-m "$(REPO_MANIFEST)"
     # Loop through files and substitute variables
-	find .repo/manifests -type f -exec sed -i -e "s|\$${GITBASE}|${GITBASE}|" ./{} \;
+    find .repo/manifests -type f -exec sed -i -e "s|\$${GITBASE}|${GITBASE}|" ./{} \;
     # Use the version of repo that was downloaded during "repo init" command above
-	.repo/repo/repo sync
+    .repo/repo/repo sync
 
 # The first line finds and removes all the directories pulled in by repo
 # The second line finds and removes all the broken symlinks from removing things
