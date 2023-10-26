@@ -78,7 +78,7 @@ endif
 
 # First, run repo init
 # Then, loop through files and substitute variables
-# Finally, Use the version of repo that was downloaded during "repo init" command above
+# Finally, use the version of repo that was downloaded during "repo init" command above
 .PHONY: configure
 configure: configure-git-hooks
 	repo --color=never init --no-repo-verify \
