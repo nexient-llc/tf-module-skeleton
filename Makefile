@@ -23,9 +23,9 @@ REPO_BRANCH ?= main
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
-# Optional settings to pull in a different version of the repo utility.
+## Optional settings to pull in a different version of the repo utility.
 # REPO_URL ?= https://github.com/nexient-llc/git-repo.git
-# Branch or refs/tags of the repository referenced by REPO_URL to use
+## Branch or refs/tags of the repository referenced by REPO_URL to use
 # REPO_REV ?= main
 # export REPO_REV REPO_URL
 
