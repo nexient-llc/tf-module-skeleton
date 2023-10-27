@@ -3,13 +3,12 @@
 # take precedence over what is defined in Makefile when they are set. This
 # allows overriding certain settings without modifying the Makefile.
 
-# REPO_MANIFESTS_URL="https://github.com/nexient-llc/common-automation-framework.git"
-# REPO_BRANCH="main"
-# REPO_MANIFEST="manifests/terraform_modules/seed/manifest.xml"
+# CAF_MANIFESTS_URL="https://github.com/nexient-llc/common-automation-framework.git"
+# CAF_MANIFESTS_REVISION="refs/tags/0.1.0"
+# CAF_MANIFESTS_PATH="manifests/terraform_modules/seed/manifest.xml"
 # REPO_URL="https://github.com/nexient-llc/git-repo.git"
 # REPO_REV="main"
 # GITBASE="https://github.com/nexient-llc/"
-# GITREV="main"
 # IS_PIPELINE="false"
 # IS_AUTHENTICATED="false"
 # JOB_NAME="job"

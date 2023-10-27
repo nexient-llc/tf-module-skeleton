@@ -10,18 +10,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Include custom values from .cafenv. Repository root is assumed to be the working directory.
+## Include custom values from .cafenv. Repository root is assumed to be the working directory.
 # Including overriding values in this file is preferred over modifying the contents below.
 CAF_ENV_FILE = .cafenv
 -include $(CAF_ENV_FILE)
 
 # Source repository for repo manifests
-REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
-# Branch of source repository for repo manifests. Other tags not currently supported.
-REPO_MANIFESTS_REVISION ?= refs/tags/0.1.1
+CAF_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
+# This  will point to a git tag
+CAF_MANIFESTS_REVISION ?= refs/tags/0.1.0
 
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
-REPO_MANIFESTS_PATH ?= manifests/terraform_modules/seed/manifest.xml
+CAF_MANIFESTS_PATH ?= manifests/terraform_modules/seed/manifest.xml
 
 # Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
 REPO_URL ?= https://github.com/nexient-llc/git-repo.git
@@ -78,9 +78,9 @@ endif
 .PHONY: configure
 configure: configure-git-hooks
 	repo --color=never init --no-repo-verify \
-		-u "$(REPO_MANIFESTS_URL)" \
-		-b "$(REPO_MANIFESTS_REVISION)" \
-		-m "$(REPO_MANIFESTS_PATH)"
+		-u "$(CAF_MANIFESTS_URL)" \
+		-b "$(CAF_MANIFESTS_REVISION)" \
+		-m "$(CAF_MANIFESTS_PATH)"
 	.repo/repo/repo envsubst
 	.repo/repo/repo sync
 
