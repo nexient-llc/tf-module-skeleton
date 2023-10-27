@@ -19,10 +19,10 @@ CAF_ENV_FILE = .cafenv
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
 # TODO: replace with git tag when supported
-REPO_MANIFESTS_VER ?= refs/tags/0.1.0
+REPO_MANIFESTS_REVISION ?= refs/tags/0.1.0
 
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
-REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
+REPO_MANIFESTS_PATH ?= manifests/terraform_modules/seed/manifest.xml
 
 # Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
 REPO_URL ?= https://github.com/nexient-llc/git-repo.git
@@ -81,8 +81,8 @@ endif
 configure: configure-git-hooks
 	repo --color=never init --no-repo-verify \
 		-u "$(REPO_MANIFESTS_URL)" \
-		-b "$(REPO_MANIFESTS_VER)" \
-		-m "$(REPO_MANIFEST)"
+		-b "$(REPO_MANIFESTS_REVISION)" \
+		-m "$(REPO_MANIFESTS_PATH)"
 	repo envsubst
 	repo sync
 
