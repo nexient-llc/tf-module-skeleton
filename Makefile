@@ -74,6 +74,7 @@ endef
 configure: git-auth
 endif
 
+# For the last 2 lines, use the version of repo downloaded by repo init
 .PHONY: configure
 configure: configure-git-hooks
 	repo --color=never init --no-repo-verify \
