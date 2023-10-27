@@ -18,7 +18,7 @@ CAF_ENV_FILE = .cafenv
 # Source repository for repo manifests
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
-REPO_MANIFESTS_REVISION ?= refs/tags/0.1.0
+REPO_MANIFESTS_REVISION ?= refs/tags/0.1.1
 
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFESTS_PATH ?= manifests/terraform_modules/seed/manifest.xml
@@ -26,7 +26,7 @@ REPO_MANIFESTS_PATH ?= manifests/terraform_modules/seed/manifest.xml
 # Settings to pull in Nexient version of (google) repo utility that supports environment substitution:
 REPO_URL ?= https://github.com/nexient-llc/git-repo.git
 # Branch or git tag of the repository referenced by REPO_URL to use
-REPO_REV ?= refs/tags/0.1.0
+REPO_REV ?= v2.10.2-nexient
 export REPO_REV REPO_URL
 
 # Example variable to substituted after init, but before sync in repo manifests.
@@ -81,8 +81,8 @@ configure: configure-git-hooks
 		-u "$(REPO_MANIFESTS_URL)" \
 		-b "$(REPO_MANIFESTS_REVISION)" \
 		-m "$(REPO_MANIFESTS_PATH)"
-	./repo/repo/repo envsubst
-	./repo/repo/repo sync
+	.repo/repo/repo envsubst
+	.repo/repo/repo sync
 
 # The first line finds and removes all the directories pulled in by repo
 # The second line finds and removes all the broken symlinks from removing things
