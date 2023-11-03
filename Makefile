@@ -47,6 +47,8 @@ JOB_EMAIL ?= job@job.job
 COMPONENTS_DIR = components
 -include $(COMPONENTS_DIR)/Makefile
 
+MODULE_DIR ?= ${COMPONENTS_DIR}/module
+
 .PHONY: configure-git-hooks
 configure-git-hooks:
 	pre-commit install
