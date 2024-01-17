@@ -1,6 +1,6 @@
 package common
 
-import "github.com/nexient-llc/tf-caf-terratest-common/types"
+import "github.com/nexient-llc/lcaf-component-terratest-common/types"
 
 type ThisTFModuleConfig struct {
 	types.GenericTFModuleConfig
