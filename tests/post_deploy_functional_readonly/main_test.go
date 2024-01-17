@@ -15,8 +15,8 @@ package test
 import (
 	"testing"
 
-	"github.com/nexient-llc/tf-caf-terratest-common/lib"
-	"github.com/nexient-llc/tf-caf-terratest-common/types"
+	"github.com/nexient-llc/lcaf-component-terratest-common/lib"
+	"github.com/nexient-llc/lcaf-component-terratest-common/types"
 	testimpl "github.com/nexient-llc/tf-module-skeleton/tests/testimpl"
 )
 
