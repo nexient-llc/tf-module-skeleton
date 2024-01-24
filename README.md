@@ -128,7 +128,7 @@ When run, `make` will look for a file called `.cafenv` in the repository root. T
 
 | Name | Version |
 |------|---------|
-| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.0 |
 
 ## Modules
 
