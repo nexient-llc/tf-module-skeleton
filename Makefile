@@ -15,10 +15,18 @@
 LCAF_ENV_FILE = .lcafenv
 -include $(LCAF_ENV_FILE)
 
+export PLATFORM_VER
+export CONTAINER_VER
+export PIPELINES_VER
+export WEBHOOK_VER
+export PYTHON_VER
+export TERRAGRUNT_VER
+export TERRAFORM_VER
+
 # Source repository for repo manifests
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/launch-common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
-REPO_BRANCH ?= refs/tags/0.2.1
+REPO_BRANCH ?= refs/tags/0.3.0
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
