@@ -19,20 +19,10 @@ This repo is intended to be used as a template for any new TF module. In some ca
 
 ### Repo Init
 
-Run the following commands to prep repo and enable all `Makefile` commands to run
+Run the following command to prep repo and enable all `Makefile` commands to run
 
 ```shell
-asdf plugin add terraform
-asdf plugin add tflint
-asdf plugin add golang
-asdf plugin add golangci-lint
-asdf plugin add nodejs
-asdf plugin add opa
-asdf plugin add conftest
-asdf plugin add pre-commit
-asdf plugin add terragrunt
-
-asdf install
+make configure
 ```
 
 ### Templating
@@ -76,7 +66,7 @@ TBD
 
 #### Overriding Make Behavior
 
-When run, `make` will look for a file called `.cafenv` in the repository root. This file if present will be included, and it can be used to override variables without altering the [Makefile](Makefile). A few examples of variables that can be substituted are commented out in [the file](.cafenv).
+When run, `make` will look for a file called `.lcafenv` in the repository root. This file if present will be included, and it can be used to override variables without altering the [Makefile](Makefile). A few examples of variables that can be substituted are commented out in [the file](.lcafenv).
 
 #### Module Configuration
 
@@ -96,9 +86,9 @@ When run, `make` will look for a file called `.cafenv` in the repository root. T
   - Should have default values and be instantiable with minimal to no inputs
   - We can think of these default values as the "default example"
 - A `Makefile` provides tasks for terraform module development
-  - It will clone and cache `caf-components-tf-module` and `caf-components-platform` git repositories when a `make configure` is ran
+  - It will clone and cache `lcaf-component-tf-module` and `lcaf-component-platform` git repositories when a `make configure` is ran
   - For clearing cached components, it provides a `make clean` command
-  - Linter config and all other tasks are defined in `caf-components-tf-module`
+  - Linter config and all other tasks are defined in `lcaf-component-tf-module`
 - An `examples` folder contains example uses of the default and nested modules
   - There should be at least one example for each nested module
 - A `tests` folder contains Go functional tests
