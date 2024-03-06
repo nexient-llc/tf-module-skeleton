@@ -453,8 +453,8 @@ github.com/modern-go/reflect2 v1.0.2 h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9G
 github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
 github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 h1:C3w9PqII01/Oq1c1nUAm88MOHcQC9l5mIlSMApZMrHA=
 github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822/go.mod h1:+n7T8mK8HuQTcFwEeznm/DIxMOiR9yIdICNftLE1DvQ=
-github.com/nexient-llc/lcaf-component-terratest-common v0.0.0-20240117163707-a1dfafae58b4 h1:d159w/9sreYb3dJg+s1XGO0bIr00JtjrdgJf6z7eCnI=
-github.com/nexient-llc/lcaf-component-terratest-common v0.0.0-20240117163707-a1dfafae58b4/go.mod h1:g3lD3RGQNlbd66ngNJnxA7hjjfEL+YAEksN0nxK9Ddc=
+github.com/nexient-llc/lcaf-component-terratest-common v1.0.3 h1:ZvOcg+2frPPlpicE4MKfgc8iZNiqDQoiZJD7CceXilU=
+github.com/nexient-llc/lcaf-component-terratest-common v1.0.3/go.mod h1:rgKs+sBQHXBjY3ECn8BcxrHLAPv+Y5iDMp0bDct7mN4=
 github.com/onsi/ginkgo/v2 v2.9.1 h1:zie5Ly042PD3bsCvsSOPvRnFwyo3rKe64TJlD6nu0mk=
 github.com/onsi/gomega v1.27.4 h1:Z2AnStgsdSayCMDiCU42qIz+HLqEPcgiOCXjAU/w+8E=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

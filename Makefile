@@ -18,7 +18,7 @@ LCAF_ENV_FILE = .lcafenv
 # Source repository for repo manifests
 REPO_MANIFESTS_URL ?= https://github.com/nexient-llc/launch-common-automation-framework.git
 # Branch of source repository for repo manifests. Other tags not currently supported.
-REPO_BRANCH ?= refs/tags/0.2.1
+REPO_BRANCH ?= refs/tags/0.3.0
 # Path to seed manifest in repository referenced in REPO_MANIFESTS_URL
 REPO_MANIFEST ?= manifests/terraform_modules/seed/manifest.xml
 
@@ -46,9 +46,20 @@ COMPONENTS_DIR = components
 
 MODULE_DIR ?= ${COMPONENTS_DIR}/module
 
+PYTHON3_INSTALLED = $(shell which python3 > /dev/null 2>&1; echo $$?)
+MISE_INSTALLED = $(shell which mise > /dev/null 2>&1; echo $$?)
+ASDF_INSTALLED = $(shell which asdf > /dev/null 2>&1; echo $$?)
+REPO_INSTALLED = $(shell which repo > /dev/null 2>&1; echo $$?)
+GIT_USER_SET = $(shell git config --get user.name > /dev/null 2>&1; echo $$?)
+GIT_EMAIL_SET = $(shell git config --get user.name > /dev/null 2>&1; echo $$?)
+
 .PHONY: configure-git-hooks
-configure-git-hooks:
+configure-git-hooks: configure-dependencies
+ifeq ($(PYTHON3_INSTALLED), 0)
 	pre-commit install
+else
+	$(error Missing python3, which is required for pre-commit. Install python3 and rerun.)
+endif
 
 ifeq ($(IS_PIPELINE),true)
 .PHONY: git-config
@@ -76,14 +87,33 @@ endef
 configure: git-auth
 endif
 
+.PHONY: configure-dependencies
+configure-dependencies:
+ifeq ($(MISE_INSTALLED), 0)
+	@echo "Installing dependencies using mise"
+	@awk -F'[ #]' '$$NF ~ /https/ {system("mise plugin install " $$1 " " $$NF " --yes")} $$1 ~ /./ {system("mise install " $$1 " " $$2 " --yes")}' ./.tool-versions
+else ifeq ($(ASDF_INSTALLED), 0)
+	@echo "Installing dependencies using asdf-vm"
+	@awk -F'[ #]' '$$NF ~ /https/ {system("asdf plugin add " $$1 " " $$NF)} $$1 ~ /./ {system("asdf plugin add " $$1 "; asdf install " $$1 " " $$2)}' ./.tool-versions
+else
+	$(error Missing supported dependency manager. Install asdf-vm (https://asdf-vm.com/) or mise (https://mise.jdx.dev/) and rerun)
+endif
+
 .PHONY: configure
 configure: configure-git-hooks
-	repo --color=never init --no-repo-verify \
+ifneq ($(and $(GIT_USER_SET), $(GIT_EMAIL_SET)), 0)
+	$(error Git identities are not set! Set your user.name and user.email using 'git config' and rerun)
+endif
+ifeq ($(REPO_INSTALLED), 0)
+	echo n | repo --color=never init --no-repo-verify \
 		-u "$(REPO_MANIFESTS_URL)" \
 		-b "$(REPO_BRANCH)" \
 		-m "$(REPO_MANIFEST)"
 	repo envsubst
 	repo sync
+else
+	$(error Missing Repo, which is required for platform sync. Install Repo (https://gerrit.googlesource.com/git-repo) and rerun.)
+endif
 
 # The first line finds and removes all the directories pulled in by repo
 # The second line finds and removes all the broken symlinks from removing things

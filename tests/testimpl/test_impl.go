@@ -1,4 +1,4 @@
-package common
+package testimpl
 
 import (
 	"regexp"
@@ -18,7 +18,7 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 	// When cloning the skeleton to a new module, you will need to change the below test
 	// to meet your needs and add any new tests that apply to your situation.
 	t.Run("TestSkeletonDeployedIsInvokable", func(t *testing.T) {
-		output := terraform.Output(t, ctx.TerratestTerraformOptions, "string")
+		output := terraform.Output(t, ctx.TerratestTerraformOptions(), "string")
 
 		// Output contains only alphanumeric characters and 🍰
 		assert.Regexp(t, regexp.MustCompile("^[A-Za-z🍰0-9]+$"), output)

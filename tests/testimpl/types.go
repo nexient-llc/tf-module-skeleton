@@ -1,4 +1,4 @@
-package common
+package testimpl
 
 import "github.com/nexient-llc/lcaf-component-terratest-common/types"
 
